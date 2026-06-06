@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Santhosh T - Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@500;700&display=swap');
+
+:root{
+    --bg:#050816;
+    --card:#0f172a;
+    --card2:#111c34;
+    --primary:#8b5cf6;
+    --secondary:#06b6d4;
+    --gold:#facc15;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --border:rgba(255,255,255,0.08);
+    --shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(139,92,246,0.25), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(6,182,212,0.2), transparent 25%),
+        linear-gradient(135deg,#030712,#0f172a 55%,#020617);
+    color:var(--text);
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size:40px 40px;
+    pointer-events:none;
+}
+
+.container{
+    width:100%;
+}
+
+.header{
+    position:sticky;
+    top:0;
+    z-index:999;
+    backdrop-filter:blur(18px);
+    background:rgba(5,8,22,0.7);
+    border-bottom:1px solid var(--border);
+}
+
+.header-content{
+    max-width:1200px;
+    margin:auto;
+    padding:2rem;
+}
+
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:2rem;
+}
+
+.hero h1{
+    font-size:4rem;
+    font-family:'Cinzel',serif;
+    background:linear-gradient(90deg,#fff,#a78bfa,#22d3ee);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:0.8rem;
+}
+
+.hero p{
+    color:var(--muted);
+    font-size:1.1rem;
+    max-width:700px;
+}
+
+.contact-links{
+    display:flex;
+    gap:1rem;
+    flex-wrap:wrap;
+    margin-top:1.4rem;
+}
+
+.contact-links a{
+    text-decoration:none;
+    color:var(--text);
+    background:rgba(255,255,255,0.05);
+    border:1px solid var(--border);
+    padding:0.8rem 1rem;
+    border-radius:14px;
+    transition:0.3s ease;
+}
+
+.contact-links a:hover{
+    transform:translateY(-4px);
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    box-shadow:0 10px 25px rgba(139,92,246,0.4);
+}
+
+.nav-tabs{
+    margin-top:2rem;
+    display:flex;
+    gap:1rem;
+    flex-wrap:wrap;
+}
+
+.tab-button{
+    border:none;
+    background:rgba(255,255,255,0.05);
+    color:var(--muted);
+    padding:0.9rem 1.4rem;
+    border-radius:999px;
+    cursor:pointer;
+    transition:0.3s ease;
+    font-weight:600;
+}
+
+.tab-button:hover,
+.tab-button.active{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+    box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+.content{
+    max-width:1200px;
+    margin:auto;
+    padding:3rem 2rem;
+}
+
+.tab-panel{
+    display:none;
+    animation:fade 0.5s ease;
+}
+
+.tab-panel.active{
+    display:block;
+}
+
+@keyframes fade{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:1.5rem;
+    margin-bottom:3rem;
+}
+
+.stat{
+    padding:2rem;
+    border-radius:24px;
+    background:linear-gradient(145deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));
+    border:1px solid var(--border);
+    backdrop-filter:blur(10px);
+    box-shadow:var(--shadow);
+    transition:0.3s ease;
+}
+
+.stat:hover{
+    transform:translateY(-6px) scale(1.02);
+}
+
+.stat-number{
+    font-size:2.8rem;
+    font-weight:700;
+    background:linear-gradient(90deg,#fff,#c4b5fd,#67e8f9);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.stat-label{
+    color:var(--muted);
+    margin-top:0.7rem;
+}
+
+.section{
+    margin-bottom:3rem;
+}
+
+.section-title{
+    font-size:2rem;
+    margin-bottom:1.5rem;
+    position:relative;
+    display:inline-block;
+}
+
+.section-title::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-10px;
+    width:60%;
+    height:4px;
+    border-radius:10px;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+}
+
+.timeline{
+    position:relative;
+    padding-left:2rem;
+}
+
+.timeline::before{
+    content:'';
+    position:absolute;
+    left:10px;
+    top:0;
+    width:2px;
+    height:100%;
+    background:linear-gradient(var(--primary),var(--secondary));
+}
+
+.timeline-item{
+    position:relative;
+    margin-bottom:2rem;
+    background:linear-gradient(145deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));
+    padding:1.5rem;
+    border-radius:20px;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+}
+
+.timeline-item::before{
+    content:'';
+    position:absolute;
+    left:-29px;
+    top:28px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    box-shadow:0 0 15px rgba(139,92,246,0.8);
+}
+
+.timeline-date{
+    color:#c4b5fd;
+    font-size:0.9rem;
+    margin-bottom:0.5rem;
+}
+
+.timeline-title,
+.project-title,
+.cert-title{
+    font-size:1.3rem;
+    font-weight:700;
+}
+
+.timeline-org,
+.project-date,
+.cert-org{
+    color:var(--muted);
+}
+
+.timeline-desc,
+.project-desc{
+    margin-top:1rem;
+    color:#dbe4f0;
+}
+
+.project-card,
+.skill-category,
+.cert-card{
+    background:linear-gradient(145deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:1.8rem;
+    margin-bottom:2rem;
+    box-shadow:var(--shadow);
+    transition:0.35s ease;
+}
+
+.project-card:hover,
+.skill-category:hover,
+.cert-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(139,92,246,0.4);
+}
+
+.project-header{
+    display:flex;
+    justify-content:space-between;
+    gap:1rem;
+    flex-wrap:wrap;
+}
+
+.project-link{
+    color:#67e8f9;
+    text-decoration:none;
+}
+
+.tech-stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.8rem;
+    margin-top:1.3rem;
+}
+
+.tech-badge{
+    background:rgba(139,92,246,0.15);
+    border:1px solid rgba(139,92,246,0.3);
+    color:#ddd6fe;
+    padding:0.55rem 1rem;
+    border-radius:999px;
+    font-size:0.85rem;
+}
+
+.skill-grid,
+.cert-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
+}
+
+.skill-category-title{
+    margin-bottom:1rem;
+    font-size:1.1rem;
+    color:#c4b5fd;
+}
+
+.skill-item{
+    margin-bottom:0.8rem;
+    color:#e2e8f0;
+}
+
+.skill-item::before{
+    content:'✦ ';
+    color:#22d3ee;
+}
+
+a{
+    color:#67e8f9;
+}
+
+@media(max-width:768px){
+    .hero h1{
+        font-size:2.7rem;
+    }
+
+    .header-content,
+    .content{
+        padding:1.2rem;
+    }
+
+    .project-header{
+        flex-direction:column;
+    }
+}
+
+
+.header{
+    transition: all 0.5s ease, opacity 0.5s ease;
+}
+
+.header.scrolled{
+    opacity: 0.12;
+    transform: translateY(-12px);
+    backdrop-filter: blur(6px);
+}
+
+.header-content{
+    padding: 1rem 2rem !important;
+}
+
+.hero{
+    min-height: 140px;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem !important;
+}
+
+.hero h1{
+    margin-bottom: 0.2rem !important;
+    font-size: 3rem !important;
+}
+
+.hero p{
+    margin: 0 auto;
+}
+
+.contact-links{
+    justify-content: center;
+    margin-top: 0.8rem !important;
+}
+
+.nav-tabs{
+    justify-content: center;
+    margin-top: 1.2rem !important;
+}
+
+@media(max-width:768px){
+    .hero{
+        min-height: 120px;
+    }
+
+    .hero h1{
+        font-size: 2.2rem !important;
+    }
+
+    .header-content{
+        padding: 1rem !important;
+    }
+}
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/></head>
+<body>
+<div class="container">
+<div class="header">
+<div class="header-content">
+<div class="hero"><div style="
+display:flex;
+align-items:center;
+justify-content:center;
+gap:1.5rem;
+flex-wrap:wrap;
+"><div style="
+width:120px;
+height:120px;
+border-radius:50%;
+background:linear-gradient(135deg,#8b5cf6,#06b6d4);
+padding:4px;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+"><div style="
+width:100%;
+height:100%;
+border-radius:50%;
+background:#0f172a;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#94a3b8;
+font-size:0.9rem;
+text-align:center;
+padding:10px;
+overflow:hidden;
+"><img src="assets/img/photo1.jpg" alt="Santhosh T" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div></div><div style="text-align:left;"><h1>Santhosh T</h1></div></div><!--
+Replace the inner div with:
+
+-->
+
+<p>Computer Science Engineering Student | Full Stack Development | Java | React.js | AI/ML</p>
+<div style="
+padding:1.5rem;
+border-radius:24px;
+background:linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03));
+border:1px solid rgba(255,255,255,0.08);
+min-width:260px;
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+">Java • React • AI/ML • Databases • Cloud</div></div>
+<div class="contact-links">
+<a href="mailto:santhoshthirupathi5@gmail.com"><i class="fa-solid fa-envelope" style="font-size: 16px;"></i> Email</a>
+<a href="https://github.com/SanthoshT-05" target="_blank"><i class="fa-brands fa-github" style="font-size: 16px;"></i> GitHub</a>
+<a href="https://linkedin.com/in/Santhosh-t-5b6a97257 " target="_blank"><i class="fa-brands fa-linkedin" style="font-size: 16px;"></i> LinkedIn</a>
+<a href="tel:+918248429344"><i class="fa-solid fa-phone" style="font-size: 16px;"></i> +91 8248429344</a>
+<a href="https://drive.google.com/drive/folders/1cW1hXw2B_jlDGkKup5lFq0yJhSsOx_U7" target="_blank">Resume</a>
+</div>
+<div class="nav-tabs">
+<button class="tab-button active" onclick="switchTab(event, 'about')">About</button>
+<button class="tab-button" onclick="switchTab(event, 'projects')">Projects</button>
+<button class="tab-button" onclick="switchTab(event, 'experience')">Experience</button>
+<button class="tab-button" onclick="switchTab(event, 'skills')">Skills</button>
+<button class="tab-button" onclick="switchTab(event, 'certifications')">Certifications</button>
+</div>
+</div>
+</div>
+<div class="content">
+<div class="tab-panel active" id="about">
+<div class="stats">
+<div class="stat">
+<div class="stat-number">4</div>
+<div class="stat-label">Major AI Projects</div>
+</div>
+<div class="stat">
+<div class="stat-number">7.3</div>
+<div class="stat-label">CGPA</div>
+</div>
+<div class="stat">
+<div class="stat-number">1</div>
+<div class="stat-label">Internship</div>
+</div>
+</div>
+<div class="section">
+<h2 class="section-title">About</h2>
+<p style="color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 1rem;">Motivated Computer Science Engineering student with strong knowledge in Full Stack Development, Java, React.js, Database Management, and Artificial Intelligence. Passionate about building scalable applications and solving real-world problems through technology. Quick learner with strong analytical thinking and hands-on project experience.</p>
+<p style="color: var(--color-text-secondary); line-height: 1.7;">Currently graduating from K. Ramakrishnan College of Technology (May 2026) with interests in AI/ML, GenAI, full-stack development, and computer vision. Strong competitive programming background with 3 Major AI Projects across Java and Python.</p>
+</div>
+<div class="section">
+<h2 class="section-title">Education</h2>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-date">May 2026</div>
+<div class="timeline-title">B.E. Computer Science and Engineering</div>
+<div class="timeline-org">K. Ramakrishnan College of Technology (KRCT), Trichy, TN</div>
+<div class="timeline-desc">CGPA: 7.3/10. Specialization in AI and machine learning with focus on practical application development.</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="tab-panel" id="projects">
+    <div class="section">
+
+        <h2 class="section-title">Featured Projects</h2>
+
+        <!-- EPIGUARD AI -->
+        <div class="project-card">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">
+                        EPIGUARD AI - Epithelium Celiac Detection
+                    </div>
+                    <div class="project-date">2025</div>
+                </div>
+
+                <a href="https://github.com/SanthoshT-05/epiguard-ai-epithelium-detection"
+                   target="_blank"
+                   class="project-link">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+            </div>
+
+            <div class="project-desc">
+                Developed a machine learning model to detect Celiac Disease from medical image data and assist healthcare analysis.
+            </div>
+
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">TensorFlow</span>
+                <span class="tech-badge">OpenCV</span>
+            </div>
+        </div>
+
+        <!-- LungSight -->
+        <div class="project-card">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">LungSight-Analytix</div>
+                    <div class="project-date">2025</div>
+                </div>
+
+                <a href="https://github.com/SanthoshT-05/lungSight-Analytics"
+                   target="_blank"
+                   class="project-link">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+            </div>
+
+            <div class="project-desc">
+                Built an AI-based system to detect COPD using medical datasets and predictive analytics techniques.
+            </div>
+
+            <div class="tech-stack">
+                <span class="tech-badge">PyTorch</span>
+                <span class="tech-badge">Machine Learning</span>
+                <span class="tech-badge">Healthcare AI</span>
+            </div>
+        </div>
+
+        <!-- TB Detection -->
+        <div class="project-card">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">TB Detection Framework</div>
+                    <div class="project-date">2026</div>
+                </div>
+
+                <a href="https://github.com/SanthoshT-05/Active-and-Latent-TB-Detection"
+                   target="_blank"
+                   class="project-link">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+            </div>
+
+            <div class="project-desc">
+                Designed an explainable deep learning model for active and latent tuberculosis detection using medical imaging.
+            </div>
+
+            <div class="tech-stack">
+                <span class="tech-badge">Deep Learning</span>
+                <span class="tech-badge">Keras</span>
+                <span class="tech-badge">Explainable AI</span>
+            </div>
+        </div>
+
+        <!-- Resume Ranking -->
+        <div class="project-card">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">Resume Ranking System</div>
+                    <div class="project-date">2025</div>
+                </div>
+
+                <a href="https://github.com/SanthoshT-05/Resume_Ranking"
+                   target="_blank"
+                   class="project-link">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+            </div>
+
+            <div class="project-desc">
+                Developed an AI-powered Resume Ranking System that analyzes resumes against job descriptions using NLP techniques and similarity scoring. The system automates candidate screening, ranks resumes based on relevance, and helps recruiters identify the most suitable candidates efficiently.
+            </div>
+
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">NLP</span>
+                <span class="tech-badge">Machine Learning</span>
+                <span class="tech-badge">Scikit-Learn</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="tab-panel" id="experience">
+<div class="section">
+<h2 class="section-title">Internship Experience</h2>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-date">2026</div>
+<div class="timeline-title">Software Developer Intern</div>
+<div class="timeline-org">Upzenix Technologies</div>
+<div class="timeline-desc">
+Assisted in software development and testing activities. Worked with datasets, debugging, workflow improvements, and collaborated on application development tasks.
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-panel" id="skills">
+<div class="section">
+<h2 class="section-title">Technical Skills</h2>
+<div class="skill-grid">
+<div class="skill-category">
+<div class="skill-category-title">Core Programming</div>
+<div class="skill-item">Java</div><div class="skill-item">Python</div>
+<div class="skill-item">Java</div>
+<div class="skill-item">C</div>
+<div class="skill-item">JavaScript</div>
+</div>
+<div class="skill-category">
+<div class="skill-category-title">Web &amp; Frontend</div>
+<div class="skill-item">React.js</div><div class="skill-item">JavaScript</div>
+<div class="skill-item">HTML5 &amp; CSS3</div>
+</div>
+<div class="skill-category">
+<div class="skill-category-title">Databases &amp; Data</div>
+<div class="skill-item">MySQL</div>
+<div class="skill-item">Vector Databases</div>
+<div class="skill-item">Data Processing</div>
+<div class="skill-item">Data Pipelines</div>
+</div>
+<div class="skill-category">
+<div class="skill-category-title">DevOps &amp; Tools</div>
+<div class="skill-item">Git</div><div class="skill-item">GitHub</div><div class="skill-item">Azure</div>
+<div class="skill-item">GitHub &amp; Git</div>
+<div class="skill-item">CI/CD Pipelines</div>
+<div class="skill-item">Linux</div>
+<div class="skill-item">VS Code</div>
+</div>
+<div class="skill-category">
+    <div class="skill-category-title">Soft Skills</div>
+
+    <div class="skill-item">Leadership</div>
+    <div class="skill-item">Communication</div>
+    <div class="skill-item">Teamwork</div>
+    <div class="skill-item">Problem Solving</div>
+    <div class="skill-item">Critical Thinking</div>
+    <div class="skill-item">Time Management</div>
+    <div class="skill-item">Adaptability</div>
+    <div class="skill-item">Public Speaking</div>
+    <div class="skill-item">Decision Making</div>
+    <div class="skill-item">Collaboration</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="tab-panel" id="certifications">
+<div class="section">
+<h2 class="section-title">Certifications & Achievements</h2>
+<div class="timeline">
+
+<div class="timeline-item">
+    <div class="timeline-date">2026</div>
+
+    <div class="timeline-title">
+        <a href="assets/img/icaisc26-paper.jpg"
+           target="_blank"
+           style="color:#67e8f9;text-decoration:none;">
+            Research Paper Presentation (Click to View Certificate)
+        </a>
+    </div>
+
+    <div class="timeline-org">ICAISC'26</div>
+
+    <div class="timeline-desc">
+        Presented a research paper on Explainable Attention-Based Multimodal Deep Learning for Tuberculosis Detection.
+    </div>
+</div>
+
+<div class="timeline-item">
+    <div class="timeline-date">2024</div>
+
+    <div class="timeline-title">
+        <a href="assets/img/azure.png"
+           target="_blank"
+           style="color:#67e8f9;text-decoration:none;">
+            Microsoft Azure Fundamentals (AZ-900) Certificate
+        </a>
+    </div>
+
+    <div class="timeline-org">Microsoft</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-date">2025</div> <div class="timeline-title">
+        <a href="assets/img/FULLSTACK.png"
+           target="_blank"
+           style="color:#67e8f9;text-decoration:none;">
+<div class="timeline-title">Java Full Stack Certification</div>
+<div class="timeline-org">Talent Next</div>
+</a>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-date">2025</div>
+<div class="timeline-title">Resume Analyser Paper Presentation</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-date">Volunteer Activity</div>
+<div class="timeline-title">NSS 7-Day Special Camp</div>
+<div class="timeline-desc">Enhanced teamwork, leadership, and community engagement skills.</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+
+    if(window.scrollY > 80){
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+
+        function switchTab(event, tabName) {
+            event.preventDefault();
+            
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+            
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
